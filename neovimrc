@@ -17,6 +17,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim' 
 
+Plugin 'suan/vim-instant-markdown'
+Plugin 'nelstrom/vim-markdown-preview'
+
 "python sytax checker
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/Pydiction'
