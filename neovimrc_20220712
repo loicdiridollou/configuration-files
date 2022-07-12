@@ -1,0 +1,151 @@
+"vundle
+set nocompatible
+filetype off
+let g:python3_host_prog = '/bin/python3' 
+let g:loaded_python_provider = 0
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled=1
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+"git interface
+Plugin 'tpope/vim-fugitive'
+
+"filesystem
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'suan/vim-instant-markdown'
+Plugin 'nelstrom/vim-markdown-preview'
+
+"python sytax checker
+Plugin 'nvie/vim-flake8'
+"Plugin 'vim-scripts/Pydiction'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'scrooloose/syntastic'
+
+"auto-completion stuff
+Plugin 'ervandew/supertab'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+"Colors!!!
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'jnurmine/Zenburn'
+Plugin 'joshdick/onedark.vim'
+
+Plugin 'tpope/vim-commentary'               " Comment stuff out
+Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
+Plugin 'Rykka/riv.vim'                      " ReStructuredText plugin
+
+"-------------------=== Python  ===-----------------------------
+Plugin 'davidhalter/jedi-vim'
+
+call vundle#end()
+
+filetype plugin indent on    " enables filetype detection
+
+"autocomplete
+let g:ycm_autoclose_preview_window_after_completion=1
+
+"custom keys
+let mapleader=" "
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+colorscheme onedark
+set guifont=Monaco:h14
+
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+"I don't like swap files
+set noswapfile
+
+
+let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
+
+" python executables for different plugins
+let g:syntastic_python_python_exec='python3'
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#completions_enabled = 0
+
+" syntastic
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_aggregate_errors=1
+let g:syntastic_loc_list_height=3
+let g:syntastic_error_symbol='X'
+let g:syntastic_style_error_symbol='X'
+let g:syntastic_warning_symbol='x'
+let g:syntastic_style_warning_symbol='x'
+let g:syntastic_python_checkers=['flake8', 'pydocstyle', 'python3']
+
+
+
+"turn on numbering
+set nu
+set relativenumber
+
+"python with virtualenv support
+py3 << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUA_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  sys.path.insert(0, project_base_dir)
+  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+"it would be nice to set tag files by the active virtualenv here
+":set tags=~/mytags "tags for ctags and taglist
+"omnicomplete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+"------------Start Python PEP 8 stuff----------------
+" Number of spaces that a pre-existing tab is equal to.
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
+
+"spaces for indents
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set smartindent
+
+" Use the below highlight group when displaying bad whitespace is desired.
+highlight BadWhitespace ctermbg=red guibg=red
+
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Wrap text after a certain number of characters
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
+
+" Use UNIX (\n) line endings.
+au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
+
+" Set the default file encoding to UTF-8:
+set encoding=utf-8
+
+" For full syntax highlighting:
+let python_highlight_all=1
+syntax on
+
+" Keep indentation level from previous line:
+autocmd FileType python set autoindent
+
+" make backspaces more powerfull
+set backspace=indent,eol,start
+"----------Stop python PEP 8 stuff--------------
