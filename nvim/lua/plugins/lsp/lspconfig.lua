@@ -104,6 +104,26 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
+-- configure gopls server
+lspconfig["gopls"].setup({
+	cmd = { "gopls" },
+	settings = {
+		gopls = {
+			analyses = {
+				nilness = true,
+				unusedparams = true,
+				unusedwrite = true,
+				useany = true,
+			},
+			experimentalPostfixCompletions = true,
+			gofumpt = true,
+			staticcheck = true,
+			usePlaceholders = true,
+		},
+	},
+	on_attach = on_attach,
+})
+
 -- configure css server
 lspconfig["pyright"].setup({
 	capabilities = capabilities,

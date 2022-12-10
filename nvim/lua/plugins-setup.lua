@@ -49,6 +49,10 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
+
+	-- nvim-tree
+	use("nvim-tree/nvim-tree.lua")
+
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	use("vim-scripts/ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
@@ -90,6 +94,9 @@ return packer.startup(function(use)
 
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+	-- go support
+	use("ray-x/go.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
