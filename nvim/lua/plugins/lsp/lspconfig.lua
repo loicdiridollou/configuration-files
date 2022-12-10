@@ -177,24 +177,6 @@ lspconfig.diagnosticls.setup({
 	},
 })
 
--- configure golang server
-lspconfig["gopls"].setup({
-	cmd = { "gopls" },
-	-- for postfix snippets and analyzers
-	capabilities = capabilities,
-	settings = {
-		gopls = {
-			experimentalPostfixCompletions = true,
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-			staticcheck = true,
-		},
-	},
-	on_attach = on_attach,
-})
-
 -- configure tailwindcss server
 lspconfig["tailwindcss"].setup({
 	capabilities = capabilities,
