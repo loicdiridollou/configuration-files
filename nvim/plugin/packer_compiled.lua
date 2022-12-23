@@ -89,11 +89,6 @@ _G.packer_plugins = {
     path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/ReplaceWithRegister",
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
   },
-  catppuccin = {
-    loaded = true,
-    path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -199,6 +194,11 @@ _G.packer_plugins = {
     path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -213,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/typescript.nvim",
     url = "https://github.com/jose-elias-alvarez/typescript.nvim"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/loic.diridollou/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-maximizer"] = {
     loaded = true,
