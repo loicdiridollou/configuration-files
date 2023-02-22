@@ -10,12 +10,6 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local keymap = vim.keymap -- for conciseness
 
 -- changing the size of the floating window to 80 chars or defined by user
@@ -92,26 +86,6 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
--- configure html server
-lspconfig["html"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
-})
-
--- configure css server
-lspconfig["cssls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
 
 -- configure gopls server
 lspconfig["gopls"].setup({
