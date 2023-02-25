@@ -16,7 +16,7 @@ null_ls.setup({
 	-- setup formatters & linters
 	sources = {
 		--  to disable file types use
-		formatting.prettier.with({ disabled_filetypes = { "markdown" } }),
+		formatting.prettier,
 		formatting.stylua, -- lua formatter
 	},
 	-- configure format on save
