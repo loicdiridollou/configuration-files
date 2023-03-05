@@ -18,6 +18,7 @@ null_ls.setup({
 		--  to disable file types use
 		formatting.prettier,
 		formatting.stylua, -- lua formatter
+		formatting.black.with({ extra_args = { "--line-length", "100" } }),
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

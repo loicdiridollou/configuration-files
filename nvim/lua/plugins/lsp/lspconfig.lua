@@ -35,7 +35,7 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "<leader>rn", vim.lsp.buf.rename) -- smart rename
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to previous diagnostic in buffer
+	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
 end
@@ -123,6 +123,7 @@ lspconfig.diagnosticls.setup({
 				sourceName = "flake8",
 				command = "flake8",
 				args = {
+					"--line-length 100",
 					"--format",
 					"%(row)d:%(col)d:%(code)s:%(code)s: %(text)s",
 					"%file",
@@ -148,6 +149,7 @@ lspconfig.diagnosticls.setup({
 				sourceName = "pylint",
 				command = "pylint",
 				args = {
+					"--line-length 100",
 					"--format",
 					"%(row)d:%(col)d:%(code)s:%(code)s: %(text)s",
 					"%file",
