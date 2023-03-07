@@ -123,7 +123,7 @@ lspconfig.diagnosticls.setup({
 				sourceName = "flake8",
 				command = "flake8",
 				args = {
-					"--line-length 100",
+					"--max-line-length=100",
 					"--format",
 					"%(row)d:%(col)d:%(code)s:%(code)s: %(text)s",
 					"%file",
