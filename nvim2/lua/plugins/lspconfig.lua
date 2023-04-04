@@ -65,8 +65,27 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
+  gopls = {
+    gopls = {
+      analyses = {
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      experimentalPostfixCompletions = true,
+      gofumpt = true,
+      staticcheck = true,
+      usePlaceholders = true,
+    },
+  },
+  pyright = {
+    pyright = {
+      analyses = {
+        autoImportCompletion = true,
+      },
+    },
+  },
   -- rust_analyzer = {},
   -- tsserver = {},
 
