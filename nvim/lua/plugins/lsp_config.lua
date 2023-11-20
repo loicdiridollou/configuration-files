@@ -10,13 +10,19 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
+-- import typescript plugin safely
+local typescript_setup, typescript = pcall(require, "typescript")
+if not typescript_setup then
+	return
+end
+
 local keymap = vim.keymap -- for conciseness
 
 -- changing the size of the floating window to 80 chars or defined by user
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts = opts or {}
-	opts.border = opts.border or "single"
+	opts.border = opts.border or "rounded"
 	opts.max_width = opts.max_width or 80
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
@@ -107,6 +113,13 @@ lspconfig["pyright"].setup({
 				autoImportCompletion = true,
 			},
 		},
+	},
+})
+
+typescript.setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
 	},
 })
 

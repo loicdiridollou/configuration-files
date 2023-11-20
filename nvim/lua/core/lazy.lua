@@ -1,19 +1,19 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  "nvim-tree/nvim-web-devicons",
-  "nvim-lua/plenary.nvim", -- lua functions that many plugins use
+	"nvim-tree/nvim-web-devicons",
+	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
 	-- theme
 	-- { "rose-pine/neovim", as = "rose-pine" },
@@ -23,14 +23,14 @@ local plugins = {
 
 	"szw/vim-maximizer", -- maximizes and restores current window
 
-{
+	{
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 			ts_update()
 		end,
 	},
-	
+
 	-- nvim-tree
 	"nvim-tree/nvim-tree.lua",
 
@@ -44,16 +44,16 @@ local plugins = {
 	-- statusline
 	"nvim-lualine/lualine.nvim",
 
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			config = function()
+				require("telescope").load_extension("fzf")
+			end,
+		},
+	},
 
 	-- autocompletion
 	"hrsh7th/nvim-cmp", -- completion plugin
@@ -85,6 +85,8 @@ local plugins = {
 	-- go support
 	"ray-x/go.nvim",
 
+	-- typescript
+	"jose-elias-alvarez/typescript.nvim",
 }
 
 local opts = {}
