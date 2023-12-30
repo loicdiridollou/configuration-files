@@ -17,6 +17,7 @@ if not typescript_setup then
 end
 
 local keymap = vim.keymap -- for conciseness
+local util = require("lspconfig/util")
 
 -- changing the size of the floating window to 80 chars or defined by user
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -37,6 +38,7 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- got to declaration
 	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+	keymap.set("n", "gs", vim.lsp.buf.signature_help, opts) -- show signature help
 	keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>rn", vim.lsp.buf.rename) -- smart rename
 	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) -- jump to previous diagnostic in buffer
@@ -121,6 +123,27 @@ typescript.setup({
 		capabilities = capabilities,
 		on_attach = on_attach,
 	},
+})
+
+-- configure rust-analyzer server
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = {
+		"rustup",
+		"run",
+		"stable",
+		"rust-analyzer",
+	},
+	-- filetypes = { "rust" },
+	-- root_dir = util.root_pattern("Cargo.toml"),
+	-- settings = { -- custom settings
+	-- 	["rust-analyzer"] = {
+	-- 		cargo = {
+	-- 			allFeatures = true,
+	-- 		},
+	-- 	},
+	-- },
 })
 
 -- configure lua server (with special settings)

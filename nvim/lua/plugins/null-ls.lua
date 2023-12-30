@@ -19,6 +19,7 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.stylua, -- lua formatter
 		formatting.black,
+		formatting.isort,
 		formatting.gofumpt,
 		formatting.golines,
 		diagnostics.ruff.with({

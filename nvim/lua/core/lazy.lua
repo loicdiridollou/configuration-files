@@ -9,6 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
@@ -75,7 +76,7 @@ local plugins = {
 	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 
 	-- formatting & linting
-	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
+	"nvimtools/none-ls.nvim", -- configure formatters & linters
 	"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
 
 	-- git integration
@@ -87,6 +88,14 @@ local plugins = {
 
 	-- typescript
 	"jose-elias-alvarez/typescript.nvim",
+
+	{
+		"rust-lang/rust.vim",
+		ft = "rust",
+		init = function()
+			vim.g.rustfmt_autosave = 1
+		end,
+	},
 }
 
 local opts = {}
