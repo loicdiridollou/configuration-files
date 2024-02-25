@@ -28,8 +28,6 @@ null_ls.setup({
 				"88",
 				"--select",
 				"A,B,C,D,E,F,I,UP",
-				"--ignore",
-				"D107,D203,D212,D213,D402,D413,D415,D416,D417",
 			},
 		}),
 		diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),

@@ -27,6 +27,8 @@ treesitter.setup({
 		"typescript",
 		"lua",
 		"vim",
+		"rust",
+		"toml",
 		"dockerfile",
 		"gitignore",
 	},
