@@ -22,15 +22,7 @@ null_ls.setup({
 		formatting.isort,
 		formatting.gofumpt,
 		formatting.golines,
-		diagnostics.ruff.with({
-			extra_args = {
-				"--line-length",
-				"88",
-				"--select",
-				"A,B,C,D,E,F,I,UP",
-			},
-		}),
-		diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),
+		-- diagnostics.flake8.with({ extra_args = { "--max-line-length", "88" } }),
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

@@ -118,6 +118,21 @@ lspconfig["pyright"].setup({
 	},
 })
 
+lspconfig["ruff_lsp"].setup({
+	on_attach = on_attach,
+	init_options = {
+		settings = {
+			-- Any extra CLI arguments for `ruff` go here.
+			args = {
+				"--line-length",
+				"88",
+				"--select",
+				"A,B,C,D,E,F,I,UP",
+			},
+		},
+	},
+})
+
 typescript.setup({
 	server = {
 		capabilities = capabilities,
