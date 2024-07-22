@@ -40,6 +40,7 @@ mason_null_ls.setup({
 		"prettier", -- ts/js formatter
 		"stylua", -- lua formatter
 		"black",
+		"ruff",
 		"gopls",
 	},
 	-- auto-install configured formatters & linters (with null-ls)

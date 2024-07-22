@@ -120,17 +120,17 @@ lspconfig["pyright"].setup({
 
 lspconfig["ruff_lsp"].setup({
 	on_attach = on_attach,
-	init_options = {
-		settings = {
-			-- Any extra CLI arguments for `ruff` go here.
-			args = {
-				"--line-length",
-				"88",
-				"--select",
-				"A,B,C,D,E,F,I,UP",
-			},
-		},
-	},
+	-- init_options = {
+	-- 	settings = {
+	-- 		-- Any extra CLI arguments for `ruff` go here.
+	-- 		args = {
+	-- 			"--line-length",
+	-- 			"88",
+	-- 			"--select",
+	-- 			"A,B,C,D,E,F,I,UP",
+	-- 		},
+	-- 	},
+	-- },
 })
 
 typescript.setup({
@@ -150,15 +150,15 @@ lspconfig["rust_analyzer"].setup({
 		"stable",
 		"rust-analyzer",
 	},
-	-- filetypes = { "rust" },
-	-- root_dir = util.root_pattern("Cargo.toml"),
-	-- settings = { -- custom settings
-	-- 	["rust-analyzer"] = {
-	-- 		cargo = {
-	-- 			allFeatures = true,
-	-- 		},
-	-- 	},
-	-- },
+	filetypes = { "rust" },
+	root_dir = util.root_pattern("Cargo.toml"),
+	settings = { -- custom settings
+		["rust-analyzer"] = {
+			cargo = {
+				allFeatures = true,
+			},
+		},
+	},
 })
 
 -- configure lua server (with special settings)

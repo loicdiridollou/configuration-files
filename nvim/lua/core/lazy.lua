@@ -17,9 +17,21 @@ local plugins = {
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
 	-- theme
-	-- { "rose-pine/neovim", as = "rose-pine" },
-	{ "catppuccin/nvim", as = "catppuccin" },
-
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	config = function()
+	-- 		-- Load the colorscheme here
+	-- 		vim.cmd.colorscheme("catppuccin")
+	-- 	end,
+	-- },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
 	"szw/vim-maximizer", -- maximizes and restores current window
