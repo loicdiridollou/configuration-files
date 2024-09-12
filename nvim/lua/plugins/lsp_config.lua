@@ -10,12 +10,6 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local keymap = vim.keymap -- for conciseness
 local util = require("lspconfig/util")
 
@@ -133,10 +127,13 @@ lspconfig["ruff_lsp"].setup({
 	-- },
 })
 
-typescript.setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
+require("typescript-tools").setup({
+	on_attach = on_attach,
+	settings = {
+		jsx_close_tag = {
+			enable = true,
+			filetypes = { "javascriptreact", "typescriptreact" },
+		},
 	},
 })
 

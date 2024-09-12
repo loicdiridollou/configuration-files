@@ -17,15 +17,6 @@ local plugins = {
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
 
 	-- theme
-	-- {
-	-- 	"catppuccin/nvim",
-	-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
-	-- 	priority = 1000, -- make sure to load this before all the other start plugins
-	-- 	config = function()
-	-- 		-- Load the colorscheme here
-	-- 		vim.cmd.colorscheme("catppuccin")
-	-- 	end,
-	-- },
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -95,11 +86,15 @@ local plugins = {
 	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 	"tpope/vim-fugitive",
 
+	-- typescript-tools
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
+
 	-- go support
 	"ray-x/go.nvim",
-
-	-- typescript
-	"jose-elias-alvarez/typescript.nvim",
 
 	{
 		"rust-lang/rust.vim",
