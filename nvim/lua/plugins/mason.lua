@@ -24,7 +24,7 @@ mason_lspconfig.setup({
 	ensure_installed = {
 		"ts_ls",
 		"pyright",
-		"ruff_lsp",
+		"ruff",
 		"gopls",
 		"lua_ls",
 		"rust_analyzer",

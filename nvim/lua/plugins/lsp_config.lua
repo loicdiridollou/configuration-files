@@ -112,7 +112,7 @@ lspconfig["pyright"].setup({
 	},
 })
 
-lspconfig["ruff_lsp"].setup({
+lspconfig["ruff"].setup({
 	on_attach = on_attach,
 	-- init_options = {
 	-- 	settings = {
