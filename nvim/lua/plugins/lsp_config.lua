@@ -29,15 +29,16 @@ local on_attach = function(_, bufnr)
 
 	-- set keybinds
 	keymap.set("n", "gf", vim.lsp.buf.references, opts) -- show definition, references
-	keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- got to declaration
-	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+	keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- got to declaration
+	keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- got to declaration
+	keymap.set("n", "gi", vim.lsp.buf.implementation, opts) -- go to implementation
 	keymap.set("n", "gs", vim.lsp.buf.signature_help, opts) -- show signature help
-	keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- see available code actions
+	-- keymap.set("n", "gt", vim.lsp.buf.type_definition, opts) -- show signature help
+	keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions
 	keymap.set("n", "<leader>rn", vim.lsp.buf.rename) -- smart rename
-	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.jump({count=-1, float=true})<CR>", opts) -- jump to previous diagnostic in buffer
+	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.jump({count=1, float=true})<CR>", opts) -- jump to next diagnostic in buffer
+	keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -72,12 +73,35 @@ require("vim.lsp.protocol").CompletionItemKind = {
 }
 
 -- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+
+-- local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+-- for type, icon in pairs(signs) do
+-- 	local hl = "DiagnosticSign" .. type
+-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+-- end
+
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "󰋼",
+			[vim.diagnostic.severity.HINT] = "󰌵",
+		},
+		texthl = {
+			[vim.diagnostic.severity.ERROR] = "Error",
+			[vim.diagnostic.severity.WARN] = "Warn",
+			[vim.diagnostic.severity.INFO] = "Info",
+			[vim.diagnostic.severity.HINT] = "Hint",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
+})
 
 -- configure gopls server
 lspconfig["gopls"].setup({
@@ -114,17 +138,6 @@ lspconfig["pyright"].setup({
 
 lspconfig["ruff"].setup({
 	on_attach = on_attach,
-	-- init_options = {
-	-- 	settings = {
-	-- 		-- Any extra CLI arguments for `ruff` go here.
-	-- 		args = {
-	-- 			"--line-length",
-	-- 			"88",
-	-- 			"--select",
-	-- 			"A,B,C,D,E,F,I,UP",
-	-- 		},
-	-- 	},
-	-- },
 })
 
 require("typescript-tools").setup({
