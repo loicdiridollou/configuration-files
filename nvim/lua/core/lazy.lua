@@ -94,7 +94,15 @@ local plugins = {
 	},
 
 	-- go support
-	"ray-x/go.nvim",
+	{
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		event = { "CmdlineEnter" },
+		ft = { "go", "gomod" },
+	},
 
 	{
 		"rust-lang/rust.vim",
