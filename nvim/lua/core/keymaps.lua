@@ -59,3 +59,4 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 
 -- diagnostics
 keymap.set("n", "<leader>d", ":lua vim.diagnostic.open_float()<CR>") -- mapping to restart lsp if necessary
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

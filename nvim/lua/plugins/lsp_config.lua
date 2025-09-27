@@ -1,9 +1,3 @@
--- import lspconfig plugin safely
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-	return
-end
-
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
@@ -104,7 +98,7 @@ vim.diagnostic.config({
 })
 
 -- configure gopls server
-lspconfig["gopls"].setup({
+vim.lsp.config("gopls", {
 	cmd = { "gopls" },
 	settings = {
 		gopls = {
@@ -122,9 +116,10 @@ lspconfig["gopls"].setup({
 	},
 	on_attach = on_attach,
 })
+vim.lsp.enable("gopls")
 
 -- configure css server
-lspconfig["pyright"].setup({
+vim.lsp.config("pyright", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
@@ -135,10 +130,12 @@ lspconfig["pyright"].setup({
 		},
 	},
 })
+vim.lsp.enable("pyright")
 
-lspconfig["ruff"].setup({
+vim.lsp.config("ruff", {
 	on_attach = on_attach,
 })
+vim.lsp.enable("ruff")
 
 require("typescript-tools").setup({
 	on_attach = on_attach,
@@ -151,7 +148,7 @@ require("typescript-tools").setup({
 })
 
 -- configure rust-analyzer server
-lspconfig["rust_analyzer"].setup({
+vim.lsp.config("rust_analyzer", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	cmd = {
@@ -170,9 +167,10 @@ lspconfig["rust_analyzer"].setup({
 		},
 	},
 })
+vim.lsp.enable("rust_analyzer")
 
 -- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
+vim.lsp.config("lua_ls", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = { -- custom settings for lua
@@ -191,3 +189,4 @@ lspconfig["lua_ls"].setup({
 		},
 	},
 })
+vim.lsp.enable("lua_ls")

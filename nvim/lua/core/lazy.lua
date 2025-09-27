@@ -120,8 +120,14 @@ local plugins = {
 	"rafamadriz/friendly-snippets", -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
-	"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
-	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
+	{
+		"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
+	},
+	{
+		"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
+		-- tag = "v2.0.0",
+		-- tag = "v1.32.0",
+	},
 
 	-- configuring lsp servers
 	"neovim/nvim-lspconfig", -- easily configure language servers
