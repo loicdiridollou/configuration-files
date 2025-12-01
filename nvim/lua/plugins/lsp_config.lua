@@ -151,18 +151,14 @@ require("typescript-tools").setup({
 vim.lsp.config("rust_analyzer", {
 	capabilities = capabilities,
 	on_attach = on_attach,
-	cmd = {
-		"rustup",
-		"run",
-		"stable",
-		"rust-analyzer",
-	},
 	filetypes = { "rust" },
-	root_dir = util.root_pattern("Cargo.toml"),
 	settings = { -- custom settings
 		["rust-analyzer"] = {
 			cargo = {
 				allFeatures = true,
+			},
+			check = {
+				command = "clippy",
 			},
 		},
 	},
