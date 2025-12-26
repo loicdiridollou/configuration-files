@@ -33,6 +33,7 @@ local on_attach = function(_, bufnr)
 	keymap.set("n", "[d", "<cmd>lua vim.diagnostic.jump({count=-1, float=true})<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>lua vim.diagnostic.jump({count=1, float=true})<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+	-- vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -154,6 +155,20 @@ vim.lsp.config("rust_analyzer", {
 	filetypes = { "rust" },
 	settings = { -- custom settings
 		["rust-analyzer"] = {
+			inlayHints = {
+				enable = false,
+				-- Or if the above doesn't work, try disabling rendering:
+				renderColons = false,
+				typeHints = {
+					enable = false,
+				},
+				parameterHints = {
+					enable = false,
+				},
+				chainingHints = {
+					enable = false,
+				},
+			},
 			cargo = {
 				allFeatures = true,
 			},
@@ -171,6 +186,20 @@ vim.lsp.config("lua_ls", {
 	on_attach = on_attach,
 	settings = { -- custom settings for lua
 		Lua = {
+			hint = {
+				enable = false,
+				-- Or if the above doesn't work, try disabling rendering:
+				renderColons = false,
+				typeHints = {
+					enable = false,
+				},
+				parameterHints = {
+					enable = false,
+				},
+				chainingHints = {
+					enable = false,
+				},
+			},
 			-- make the language server recognize "vim" global
 			diagnostics = {
 				globals = { "vim" },
