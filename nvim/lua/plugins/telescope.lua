@@ -1,3 +1,11 @@
+-- Build telescope-fzf-native if the shared library is missing
+local fzf_dir = vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim"
+local fzf_lib = fzf_dir .. "/build/libfzf.so"
+if vim.fn.isdirectory(fzf_dir) == 1 and vim.fn.filereadable(fzf_lib) == 0 then
+	vim.notify("telescope-fzf-native: building...", vim.log.levels.INFO)
+	vim.fn.system({ "make", "-C", fzf_dir })
+end
+
 -- import telescope plugin safely
 local telescope_setup, telescope = pcall(require, "telescope")
 if not telescope_setup then
