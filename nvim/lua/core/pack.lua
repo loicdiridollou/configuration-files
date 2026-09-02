@@ -66,10 +66,6 @@ vim.pack.add({
 	gh("hrsh7th/cmp-nvim-lsp"),
 	gh("onsails/lspkind.nvim"),
 
-	-- linting/formatting via none-ls
-	gh("nvimtools/none-ls.nvim"),
-	gh("jayp0521/mason-null-ls.nvim"),
-
 	-- git
 	gh("lewis6991/gitsigns.nvim"),
 	gh("tpope/vim-fugitive"),

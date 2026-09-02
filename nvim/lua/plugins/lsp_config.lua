@@ -39,42 +39,7 @@ end
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-require("vim.lsp.protocol").CompletionItemKind = {
-	"", -- Text
-	"0", -- Method
-	"0", -- Function
-	"", -- Constructor
-	"", -- Field
-	"", -- Variable
-	"", -- Class
-	"ﰮ", -- Interface
-	"", -- Module
-	"", -- Property
-	"", -- Unit
-	"", -- Value
-	"了", -- Enum
-	"", -- Keyword
-	"﬌", -- Snippet
-	"", -- Color
-	"", -- File
-	"", -- Reference
-	"", -- Folder
-	"", -- EnumMember
-	"", -- Constant
-	"", -- Struct
-	"", -- Event
-	"ﬦ", -- Operator
-	"", -- TypeParameter
-}
-
 -- Change the Diagnostic symbols in the sign column (gutter)
-
--- local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
--- for type, icon in pairs(signs) do
--- 	local hl = "DiagnosticSign" .. type
--- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
--- end
-
 vim.diagnostic.config({
 	signs = {
 		text = {
@@ -101,6 +66,7 @@ vim.diagnostic.config({
 -- configure gopls server
 vim.lsp.config("gopls", {
 	cmd = { "gopls" },
+	capabilities = capabilities,
 	settings = {
 		gopls = {
 			analyses = {
@@ -124,8 +90,8 @@ vim.lsp.config("pyright", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
-		pyright = {
-			analyses = {
+		python = {
+			analysis = {
 				autoImportCompletion = true,
 			},
 		},
