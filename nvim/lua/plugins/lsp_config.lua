@@ -41,6 +41,7 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 vim.diagnostic.config({
+	update_in_insert = true, -- render rust-analyzer's live (non-clippy) diagnostics while typing
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "",

@@ -60,6 +60,7 @@ vim.pack.add({
 	-- LSP: install & manage servers
 	gh("williamboman/mason.nvim"),
 	gh("williamboman/mason-lspconfig.nvim"),
+	gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
 
 	-- LSP: configuration
 	gh("neovim/nvim-lspconfig"),

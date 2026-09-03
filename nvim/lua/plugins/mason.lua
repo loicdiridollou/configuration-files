@@ -10,6 +10,12 @@ if not mason_lspconfig_status then
 	return
 end
 
+-- import mason-tool-installer plugin safely
+local mason_tool_installer_status, mason_tool_installer = pcall(require, "mason-tool-installer")
+if not mason_tool_installer_status then
+	return
+end
+
 -- enable mason
 mason.setup()
 
@@ -24,4 +30,20 @@ mason_lspconfig.setup({
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
+})
+
+mason_tool_installer.setup({
+	-- non-LSP tools (formatters/linters) used by conform.nvim, kept in sync with
+	-- formatters_by_ft in lua/plugins/conform.lua
+	ensure_installed = {
+		"stylua",
+		"isort",
+		"black",
+		"gofumpt",
+		"golines",
+		"prettierd",
+		"prettier",
+	},
+	auto_update = false,
+	run_on_start = true,
 })
